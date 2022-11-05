@@ -2,12 +2,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Liste - {{ .Site.BaseURL }}">
+    <meta name="author" content="{{ .Site.Author.name }}">
     <title>{{ if eq .IsHome true }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if ne .Description "" }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     {{ template "_internal/opengraph.html" . }}
     {{ template "_internal/schema.html" . }}
     {{ template "_internal/google_analytics_async.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="icon" href="{{ .Site.BaseURL }}/assets/favicon.ico">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
@@ -85,5 +86,4 @@
   }
   </script>
   {{ end }}
-  
   </head>
