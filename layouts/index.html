@@ -3,22 +3,20 @@
   {{ partial "head.html" . }}
 <body>
   <a class="skip-link" href="#main">Skip to main</a>
-  <main id="main" class="content">
+  <main id="main" >
       {{ partial "header.html" . }}
-      <section>
-        {{ .Content }}
-      </section>
-      <aside>
-        <h1>Latest Post</h1>
-		<nav>
-        {{ range (first 3 (where .Site.RegularPages "Section" "posts" ).ByDate.Reverse) }}
-          <p>
-            <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>&nbsp;
-            <a href="{{ .Permalink }}">{{ .Title }}</a>
-          <p>
-        {{ end }}
-		</nav>
-      </aside>
+      <div class="content">
+        <section>
+          {{ .Content }}
+        </section>
+        <aside id="latest-post">
+          <h1>Latest Post</h1>
+          <nav>
+          {{ $list :=  first 3 (where .Site.RegularPages "Section" "posts" ).ByDate.Reverse }}
+          {{ partial "list-post.html" $list }}
+          </nav>
+        </aside>
+      </div>
   </main>
 </body>
 </html>

@@ -3,39 +3,41 @@
   {{ partial "head.html" . }}
 <body>
   <a class="skip-link" href="#main">Skip to main</a>
-  <main id="main">
-  <div class="content">
+  <main id="top">
     {{ partial "header.html" . }}
-    <article>
-      <header class="markdown-body">
-        <h1>{{ .Title }}</h1>
-      </header>
-      <aside>
-        {{ .TableOfContents }}
-      </aside>
-      <content class="markdown-body">
-        {{ .Content }}
-        {{ if eq .Section "posts" }}
-      </content>
-      <footer id="footer-post">
-        <time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>
-        <nav>
-        <ul>
-        {{ $taxonomy := "tags" }} {{ with .Param $taxonomy }}
-        {{ range $index, $tag := . }} {{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) -}}
-        <li><a href="{{ .Permalink }}">{{ $tag | urlize }}</a></li>
-        {{- end -}} {{- end -}}
+    <div class="content">
+      <article id="main">
+        <header class="markdown-body">
+          <h1>{{ .Title }}</h1>
+        </header>
+        <aside>
+          {{ .TableOfContents }}
+        </aside>
+        <content class="markdown-body">
+          {{ .Content }}
+          {{ if eq .Section "posts" }}
+        </content>
+        <footer id="footer-post">
+          <time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>
+          <nav>
+          <ul>
+          {{ $taxonomy := "tags" }} {{ with .Param $taxonomy }}
+          {{ range $index, $tag := . }} {{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) -}}
+          <li><a href="{{ .Permalink }}">{{ $tag | urlize }}</a></li>
+          {{- end -}} {{- end -}}
+          {{ end }}
+          </ul>
+          </nav>
+        </footer>
+        <a href="#top">Go to top</a>
         {{ end }}
-        </ul>
-        </nav>
-      </footer>
+      </article>
+      {{ if eq .Section "posts" }}
+      <div id="comments">
+        {{ partial "comments.html" $ }}
+      </div>
       {{ end }}
-    </article>
-    {{ if eq .Section "posts" }}
-    <div id="comments">
-      {{ partial "comments.html" $ }}
     </div>
-    {{ end }}
   </div>
 </main>
 </body>

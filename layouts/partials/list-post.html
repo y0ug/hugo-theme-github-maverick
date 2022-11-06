@@ -1,0 +1,13 @@
+<section id="list-post">
+  <nav>
+    <ul reversed>
+      {{ range . }}
+        <li>
+          <a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a>
+          <div class="line"></div>
+          <time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "02/01/06" .Date }}</time>
+        </li>
+        {{ end }}
+    </ul>
+  </nav>
+</section>

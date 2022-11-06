@@ -45,6 +45,15 @@
     --color-accent-emphasis: #1f6feb;
     --color-attention-subtle: rgba(187,128,9,0.15);
     --color-danger-fg: #f85149;
+
+    --color-header-text: rgba(255,255,255,0.7);
+    --color-header-bg: #161b22;
+    --color-header-divider: #8b949e;
+    --color-header-logo: #f0f6fc;
+    --color-header-search-bg: #0d1117;
+    --color-header-search-border: #30363d;
+    --color-sidenav-selected-bg: #21262d;
+    --color-menu-bg-active: #161b22;
   }
 }
 
@@ -93,6 +102,16 @@
     --color-accent-emphasis: #0969da;
     --color-attention-subtle: #fff8c5;
     --color-danger-fg: #cf222e;
+
+    --color-header-text: rgba(255,255,255,0.7);
+    --color-header-bg: #24292f;
+    --color-header-divider: #57606a;
+    --color-header-logo: #ffffff;
+    --color-header-search-bg: #24292f;
+    --color-header-search-border: #57606a;
+    --color-sidenav-selected-bg: #ffffff;
+    --color-menu-bg-active: rgba(0,0,0,0);
+
   }
 }
 
@@ -106,9 +125,8 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding: 2rem;
-    //background: hsla(93, 0%, 96%, 1.00);
-    //color: #000;
+    padding: 0;
+	margin: 0;
     color: var(--color-fg-default);
     background-color: var(--color-canvas-default);
 }
@@ -134,18 +152,13 @@ h1, h2, h3, h4, h5, strong, b {
     white-space: nowrap;
 }
 
-a,
-a:visited {
-    color: inherit;
+a, a:visited {
+    color: var(--color-accent-fg);
+    text-decoration: none;
 }
 
-a:hover,
-a.heading-link {
-    text-decoration: none
-}
-
-ul {
-    list-style-type: square;
+a:hover {
+    text-decoration: underline;
 }
 
 ul, ol {
@@ -163,17 +176,12 @@ img {
     height: auto;
 }
 
-#last-post{
-  a {
-	  //white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	  text-decoration: none;
-  }
+#latest-post{
+  border-top: 3px solid;
+  border-color: var(--color-header-bg);
+}
 
+#list-post{
   ul {
 	  line-height: 2;
 	  list-style-type: none;
@@ -186,20 +194,15 @@ img {
 	  align-items: baseline;
   }
 
-  time {
-	  font-variant-numeric: tabular-nums;
-	  white-space: nowrap;
-	  flex: 0 1 auto;
-  }
-
-  .hr-line{
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
+  .line{
+    margin: 0 0.5rem 0 0.5rem;
     border: 0;
     border-bottom: 1px solid #ccc;
     flex: 1 0 1rem;	
+  }
+
+  time {
+	  flex: 0 1 auto;
   }
 }
 
@@ -208,39 +211,41 @@ img {
   justify-content: space-between;
   align-items: baseline;
 
+  border-top: 3px solid;
+  border-color: var(--color-header-bg);
+
+
   a {
-		text-decoration: none;
 		display: inline;
   }
 
   ul {
-	  line-height: 2;
 	  list-style-type: none;
-	  padding-left: 0;
+	  padding: 0;
+      margin: 0;
 	  display: flex;
   }
 
   ul li {
 	  padding: 0 1rem 0 1rem;
+      margin: 1rem;
 	  align-items: baseline;
-      border-left: 1px solid #ccc;
+      border-radius: 1rem;
+      //border: 2px solid #73AD21;
+      background-color: var(--color-header-bg);
   }
 
   time {
-	  font-variant-numeric: tabular-nums;
-	  white-space: nowrap;
 	  flex: 0 1 auto;
+      font-weight: 600;
   }
+  
+}
 
-  .line{
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-    border: 0;
-    border-bottom: 1px solid #ccc;
-    flex: 1 0 1rem;	
-  }
+#top-banner {
+  background-color: var(--color-header-bg);
+  padding:0;
+  margin:0;
 }
 
 #header-menu {
@@ -248,8 +253,9 @@ img {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-	padding-bottom: 0.5rem;
-    border-bottom: 1px dotted #ccc;
+	padding: 0.5rem;
+    //border-bottom: 1px dotted #ccc;
+	background-color: var(--color-header-bg);
 
 	header {
 	  line-height: 0;
@@ -257,8 +263,14 @@ img {
 	}
 
 	a {
-		text-decoration: none;
 		display: inline;
+        //color: var(--color-fg-default);
+		color: var(--color-header-logo);
+		font-weight: 600;
+	}
+	a:hover{
+		color: var(--color-header-text);
+		text-decoration: none;
 	}
 
 	nav ul {
@@ -278,4 +290,10 @@ img {
 	nav ul a:first-child {
 		padding-left: 1rem;
 	}
+}
+
+
+time {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }

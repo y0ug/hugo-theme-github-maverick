@@ -6,19 +6,7 @@
   <main id="main">
   <div class="content">
     {{ partial "header.html" . }}
-    <section id="last-post">
-      <nav>
-        <ul reversed>
-          {{ range .Pages }}
-            <li>
-              <a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a>
-              <div class="hr-line"></div>
-              <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "02/01/06" .Date }}</time>
-            </li>
-            {{ end }}
-        </ul>
-      </nav>
-    </section>
+    {{ partial "list-post.html" .Pages }}
   </div>
 </main>
 </body>
