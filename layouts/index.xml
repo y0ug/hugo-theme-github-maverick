@@ -6,7 +6,7 @@
     <link>{{ .Site.BaseURL }}</link>
     <!-- Optional channel elements -->
     <language>en</language>
-    <copyright>Copyright {{ now.Format "2022"}}, Calvin Tran</copyright>
+    <copyright>Copyright {{ now.Format "2022"}}, {{ .Site.Author.Name }}</copyright>
     <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
     <generator>Hugo - gohugo.io</generator>
     <docs>http://cyber.harvard.edu/rss/rss.html</docs>
@@ -16,7 +16,7 @@
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
       <description>{{ .Content | html }}</description>
-      <author>trandcanh@gmail.com (Calvin Tran)</author>
+      <author>{{.Site.Author.Email}} ({{.Site.Author.Name}})</author>
       <guid>{{ .Permalink }}</guid>
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
     </item>
