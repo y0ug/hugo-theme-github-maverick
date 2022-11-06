@@ -1,22 +1,24 @@
 <!doctype html>
 <html lang="en">
   {{ partial "head.html" . }}
-<body  >
+<body>
   <a class="skip-link" href="#main">Skip to main</a>
-  <main id="main">
-    <div class="content">
+  <main id="main" class="content">
       {{ partial "header.html" . }}
-      {{ .Content }}
-      <h1>Latest Post</h1>
-      <section class="markdown-body">
+      <section>
+        {{ .Content }}
+      </section>
+      <aside>
+        <h1>Latest Post</h1>
+		<nav>
         {{ range (first 3 (where .Site.RegularPages "Section" "posts" ).ByDate.Reverse) }}
           <p>
             <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>&nbsp;
             <a href="{{ .Permalink }}">{{ .Title }}</a>
           <p>
         {{ end }}
-      </section>
-    </div>
+		</nav>
+      </aside>
   </main>
 </body>
 </html>

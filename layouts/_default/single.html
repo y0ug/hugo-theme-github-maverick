@@ -6,8 +6,10 @@
   <main id="main">
   <div class="content">
     {{ partial "header.html" . }}
-    <section class="markdown-body">
+    <article class="markdown-body">
+      <header>
       <h1 class="post">{{ .Title }}</h1>
+      </header>
       <aside>
         {{ .TableOfContents }}
       </aside>
@@ -15,16 +17,18 @@
         {{ .Content }}
         {{ if eq .Section "posts" }}
       </content>
-      <div class="post-date">
+      <footer class="post-date">
         <span class="g time">{{.Date.Format "January 2, 2006"}} </span> &#8729;
+        <nav>
         {{ $taxonomy := "tags" }} {{ with .Param $taxonomy }}
         {{ range $index, $tag := . }} {{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) -}}
         <a href="{{ .Permalink }}">{{ $tag | urlize }}</a>
         {{- end -}} {{- end -}}
         {{ end }}
-      </div>
+        </nav>
+      </footer>
       {{ end }}
-    </section>
+    </article>
     {{ if eq .Section "posts" }}
     <div id="comments">
       {{ partial "comments.html" $ }}
