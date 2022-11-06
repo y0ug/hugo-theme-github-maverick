@@ -4,7 +4,7 @@
 name = "github-maverick"
 license = "MIT"
 licenselink = "https://github.com/y0ug/hugo-theme-github-maverick/blob/master/LICENSE"
-description = ""
+description = "Theme that used github-markdown CSS to render blog post"
 homepage = ""
 tags = []
 features = []
