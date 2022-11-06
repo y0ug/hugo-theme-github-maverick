@@ -6,25 +6,27 @@
   <main id="main">
   <div class="content">
     {{ partial "header.html" . }}
-    <article class="markdown-body">
-      <header>
-      <h1 class="post">{{ .Title }}</h1>
+    <article>
+      <header class="markdown-body">
+        <h1>{{ .Title }}</h1>
       </header>
       <aside>
         {{ .TableOfContents }}
       </aside>
-      <content>
+      <content class="markdown-body">
         {{ .Content }}
         {{ if eq .Section "posts" }}
       </content>
-      <footer class="post-date">
-        <span class="g time">{{.Date.Format "January 2, 2006"}} </span> &#8729;
+      <footer id="footer-post">
+        <time datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>
         <nav>
+        <ul>
         {{ $taxonomy := "tags" }} {{ with .Param $taxonomy }}
         {{ range $index, $tag := . }} {{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) -}}
-        <a href="{{ .Permalink }}">{{ $tag | urlize }}</a>
+        <li><a href="{{ .Permalink }}">{{ $tag | urlize }}</a></li>
         {{- end -}} {{- end -}}
         {{ end }}
+        </ul>
         </nav>
       </footer>
       {{ end }}
