@@ -10,9 +10,10 @@
           {{ .Content }}
         </section>
         <aside id="latest-post">
-          <h1>Latest Post</h1>
+          {{ $cpt := .Site.Params.lastPostCpt | default 1 }}
+          <h1>Latest {{ $cpt}} posts:</h1>
           <nav>
-          {{ $list :=  first 3 (where .Site.RegularPages "Section" "posts" ).ByDate.Reverse }}
+          {{ $list :=  first $cpt (where .Site.RegularPages "Section" "posts" ).ByDate.Reverse }}
           {{ partial "list-post.html" $list }}
           </nav>
         </aside>
